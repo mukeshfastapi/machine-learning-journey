@@ -3,5 +3,10 @@
 msg="$1"
 
 git add .
-git commit -m "$msg"
-git push origin main
+
+if git diff --cached --quiet; then
+    echo "No changes to commit."
+else
+    git commit -m "$msg"
+    git push origin main
+fi
